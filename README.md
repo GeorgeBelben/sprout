@@ -1,50 +1,37 @@
-# React + TypeScript + Vite
+# Sprout 🌱
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Sprout** is a web-based time tracking application specifically designed for freelance developers to manage their projects, track work hours, and generate reports and invoices efficiently.
 
-Currently, two official plugins are available:
+_P.S. This isn't an actual project, it's just a personal project for me to experiment with new ideas and technologies._
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+-   **Project Management:** Easily create and manage multiple projects, set hourly rates, and assign tasks.
+-   **Time Tracking:** Simple start/stop timers, manual time entries, and real-time tracking on any device.
+-   **Reports and Analytics:** Generate and export detailed time reports, visualize data with charts.
+-   **Invoice Generation:** Automatically create and send invoices based on tracked hours.
+-   **Integrations:** Sync with popular tools like GitHub, Google Calendar, and more.
+-   **Secure and Responsive:** Safe user authentication and a mobile-friendly interface for on-the-go tracking.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Demo
 
-- Configure the top-level `parserOptions` property like this:
+_Coming soon..._
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Screenshots
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+_Coming soon..._
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Usage
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+_Coming soon..._
+
+## Built With
+
+-   **React** - Frontend library for building user interfaces
+-   **Firebase** - Backend platform for authentication, databases and file storage
+-   **Tailwind** - CSS framework for rapid development
+    _I'm sure there will be more as development progresses..._
+
+## License
+
+[MIT](/LICENSE)
