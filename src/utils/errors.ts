@@ -1,4 +1,4 @@
-import { ErrorLike } from "../types";
+import { ErrorLike } from "~/types";
 
 export const ensureError = (error: unknown): Error => {
 	if (error instanceof Error) {
