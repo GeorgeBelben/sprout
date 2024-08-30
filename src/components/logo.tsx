@@ -5,9 +5,10 @@ import { PropsWithClassName } from "../types";
 const logoVariants = cva([], {
 	variants: {
 		color: {
-			brand: ["text-emerald-600"],
-			black: ["text-black"],
-			white: ["text-white"],
+			brand: ["text-grass-9"],
+			foreground: ["text-gray-12"],
+			"foreground-muted": ["text-gray-6"],
+			background: ["text-gray-1"],
 		},
 		size: {
 			xs: ["h-4"],
