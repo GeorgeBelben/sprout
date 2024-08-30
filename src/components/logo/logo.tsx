@@ -1,6 +1,6 @@
 import { cva, cx, VariantProps } from "class-variance-authority";
 import { ReactElement } from "react";
-import { PropsWithClassName } from "../types";
+import { PropsWithClassName } from "../../types";
 
 const logoVariants = cva([], {
 	variants: {

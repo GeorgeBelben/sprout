@@ -15,8 +15,13 @@ export default {
 	theme: {
 		colors: {
 			gray: getColorScale("gray"),
+			grass: getColorScale("grass"),
 		},
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ["Inter", "sans-serif"],
+			},
+		},
 	},
 	plugins: [],
 };
