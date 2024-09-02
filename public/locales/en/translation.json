@@ -1,0 +1,30 @@
+{
+	"firebaseErrors": {
+		"auth/email-already-in-use": "The email address is already in use by another account.",
+		"auth/invalid-email": "The email address is badly formatted.",
+		"auth/operation-not-allowed": "The email/password account is not enabled.",
+		"auth/weak-password": "The password is too weak.",
+		"auth/user-not-found": "There is no user record corresponding to this identifier. The user may have been deleted.",
+		"auth/wrong-password": "The password is invalid or the user does not have a password.",
+		"auth/missing-password": "The password is missing.",
+		"auth/invalid-credential": "The supplied auth credentials are invalid."
+	},
+	"global": {
+		"userMenu": {
+			"settings": "Settings",
+			"logout": "Logout"
+		}
+	},
+	"auth": {
+		"forms": {
+			"namePlaceholder": "Name",
+			"emailPlaceholder": "Email",
+			"passwordPlaceholder": "Password",
+			"passwordConfirmationPlaceholder": "Confirm Password"
+		},
+		"signIn": "Sign In",
+		"signUp": "Sign Up",
+		"linkToSignUp": "Don't have an account?",
+		"linkToSignIn": "Already have an account?"
+	}
+}

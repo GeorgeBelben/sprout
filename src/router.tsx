@@ -1,14 +1,19 @@
 import { ReactElement } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import { Home } from "~/routes/home";
+import { Layout } from "./components/layout";
 
 export function Router(): ReactElement {
-	const router = createBrowserRouter([
+	const routes = useRoutes([
 		{
 			path: "/",
 			element: <Home />,
 		},
+		{
+			path: "*",
+			element: <Navigate to="/" />,
+		},
 	]);
 
-	return <RouterProvider router={router} />;
+	return <Layout>{routes}</Layout>;
 }
