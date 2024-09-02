@@ -32,8 +32,9 @@ export function Dropdown({ children, menuItems }: DropdownProps): ReactElement {
 
 			<DropdownPrimitive.Portal>
 				<DropdownPrimitive.Content
+					side="left"
 					className="min-w-56 bg-gray-2 border border-gray-4 rounded-md p-1 shadow will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
-					sideOffset={8}
+					sideOffset={12}
 					collisionPadding={8}
 				>
 					{menuItems.map((item) => {
@@ -56,7 +57,7 @@ export function Dropdown({ children, menuItems }: DropdownProps): ReactElement {
 								key={item.key}
 								asChild
 								className={cn(
-									"group cursor-pointer text-sm leading-none text-gray-10 rounded flex items-center h-8 px-3 relative select-none outline-none data-[disabled]:text-violet-8 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-4 data-[highlighted]:text-gray-12 transition-all duration-100"
+									"group cursor-pointer text-sm leading-none text-gray-11 rounded flex items-center h-8 px-3 relative select-none outline-none data-[disabled]:text-violet-8 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-4 data-[highlighted]:text-gray-12 transition-all duration-100"
 								)}
 							>
 								{"onClick" in item ? (

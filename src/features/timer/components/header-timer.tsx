@@ -15,9 +15,10 @@ export function HeaderTimer(): ReactElement {
 
 	if (!timer.exists) {
 		return (
-			<div>
-				No active timer <Button onClick={() => timer.start()}>Start Quick Timer</Button>
-			</div>
+			<Button variant={"ghost"} onClick={() => timer.start()}>
+				<span className={cn("size-3 inline-block rounded-full bg-red-9 mr-2")} />
+				<span>Start tracking</span>
+			</Button>
 		);
 	}
 
@@ -25,7 +26,7 @@ export function HeaderTimer(): ReactElement {
 		<div className="flex items-center space-x-2">
 			<span
 				className={cn("size-3 inline-block rounded-full", {
-					"bg-red-9": timer.status === TimerStatus.Active,
+					"bg-red-9 animate-pulse": timer.status === TimerStatus.Active,
 					"bg-gray-7": timer.status === TimerStatus.Paused,
 				})}
 			/>

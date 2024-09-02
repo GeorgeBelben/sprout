@@ -1,14 +1,12 @@
 import { ReactElement } from "react";
-import { Logo } from "~/components";
-import { signOut } from "firebase/auth";
-import { auth } from "~/lib/firebase";
 
 export function Home(): ReactElement {
 	return (
-		<div className="flex-1 flex items-center justify-center flex-col space-y-8">
-			<Logo color="foreground-muted" size="lg" />
-			<h1 className="text-3xl font-bold ttext-violet-10">Welcome to your new app!</h1>
-			<button onClick={() => signOut(auth)}>Sign out</button>
+		<div className="flex-1 flex flex-col space-y-8">
+			<div className="h-96 relative">
+				<div className="absolute inset-0 -z-10 bg-gradient-to-b from-violet-9 to-violet-1 opacity-30"></div>
+				<h1>Hello!</h1>
+			</div>
 		</div>
 	);
 }
