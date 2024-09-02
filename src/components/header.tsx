@@ -1,6 +1,5 @@
 import { ReactElement } from "react";
 import { HeaderTimer } from "~/features/timer";
-import { Logo } from "./logo";
 import { Avatar } from "./avatar";
 import { Tooltip } from "./tooltip";
 import { Dropdown } from "./dropdown";
@@ -8,13 +7,19 @@ import { Cog, LogOut } from "lucide-react";
 import { useUser } from "~/hooks/use-user";
 import { signOut } from "firebase/auth";
 import { auth } from "~/lib/firebase";
+import { Logo } from "./logo";
+import { Link } from "react-router-dom";
 
 export function Header(): ReactElement {
 	return (
-		<div className="h-12 flex items-center justify-between px-3">
-			<Logo size="xs" color="brand" />
+		<div className="h-12 flex items-center justify-between">
+			<Link to="/" className="size-12 flex items-center justify-center">
+				<Logo size="xs" />
+			</Link>
 			<HeaderTimer />
-			<UserMenu />
+			<div className="size-12 flex items-center justify-center">
+				<UserMenu />
+			</div>
 		</div>
 	);
 }

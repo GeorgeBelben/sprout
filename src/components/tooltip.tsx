@@ -4,14 +4,15 @@ import { cn } from "~/utils/cn";
 
 type TooltipProps = PropsWithChildren<{
 	content: ReactElement | string;
+	side?: "top" | "right" | "bottom" | "left";
 }>;
 
-export function Tooltip({ children, content }: TooltipProps): ReactElement {
+export function Tooltip({ children, content, side = "top" }: TooltipProps): ReactElement {
 	return (
 		<TooltipPrimitive.Root>
 			<TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 			<TooltipPrimitive.Content
-				side="top"
+				side={side}
 				sideOffset={5}
 				collisionPadding={8}
 				className={cn(
