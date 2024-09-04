@@ -7,15 +7,10 @@ function getClientsCollectionRef(userId: string): CollectionReference {
 	return collection(db, path);
 }
 
-export async function addClient(displayName: string): Promise<void> {
+export async function addClient(clientDto: ClientDto): Promise<void> {
 	const user = getCurrentUser();
 
 	const collectionRef = getClientsCollectionRef(user.uid);
-
-	const clientDto: ClientDto = {
-		displayName: displayName,
-		totalProjects: 0,
-	};
 
 	await addDoc(collectionRef, clientDto);
 }
@@ -43,6 +38,10 @@ export async function getClient(id: DocumentId): Promise<Client> {
 	const docRef = doc(collectionRef, id);
 
 	const docSnap = await getDoc(docRef);
+
+	if (!docSnap.exists()) {
+		throw new Error("Client not found");
+	}
 
 	return {
 		id: docSnap.id,

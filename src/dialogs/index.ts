@@ -1,3 +1,3 @@
-export * from "./create-project";
-export * from "./create-client";
+export * from "./add-project";
+export * from "./add-client";
 export * from "./manage-client";

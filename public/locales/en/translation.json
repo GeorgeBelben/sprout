@@ -16,9 +16,40 @@
 			"logout": "Logout"
 		}
 	},
+	"buttons": {
+		"addNew": "Add New",
+		"add": "Add",
+		"manage": "Manage",
+		"update": "Update"
+	},
 	"forms": {
 		"errors": {
 			"imageUploadFailed": "Image upload failed"
+		},
+		"avatarUpload": {
+			"label": "Click here or drag and drop an image to upload",
+			"fileInfo": "Image must be a .jpg, .jpeg, .png or .gif file and less than 5MB in size."
+		}
+	},
+	"clients": {
+		"clients": "Clients",
+		"noClients": "No clients found",
+		"addFirstClient": "Add your first client"
+	},
+	"projects": {
+		"projects": "Projects"
+	},
+	"dialogs": {
+		"addClient": {
+			"title": "Add Client",
+			"description": "Add a new client to the system. Clients are used to group projects together.",
+			"displayNameLabel": "Display Name",
+			"displayNamePlaceholder": "e.g. Apple"
+		},
+		"manageClient": {
+			"title": "Manage Client",
+			"displayNameLabel": "Display Name",
+			"displayNamePlaceholder": "e.g. Apple"
 		}
 	},
 	"auth": {

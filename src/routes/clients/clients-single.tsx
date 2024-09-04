@@ -25,7 +25,7 @@ export function ClientsSingleRoute(): ReactElement {
 				)}
 				onRenderActions={() => (
 					<Button variant="secondary" onClick={() => manageClientDialog.show(client)}>
-						{t("clients.manageClient")}
+						{t("buttons.manage")}
 					</Button>
 				)}
 			/>

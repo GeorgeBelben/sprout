@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { useModal } from "@ebay/nice-modal-react";
 import { Avatar, Button, EmptyView, Page, PageHeader } from "~/components";
 import { Client } from "~/types";
-import { CreateClientDialog } from "~/dialogs";
+import { AddClientDialog } from "~/dialogs";
 import { Link, useLoaderData } from "react-router-dom";
 import { UsersRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ export function ClientsListRoute(): ReactElement {
 	const { t } = useTranslation();
 	const { clients } = useLoaderData() as LoaderData;
 
-	const createClientDialog = useModal(CreateClientDialog);
+	const createClientDialog = useModal(AddClientDialog);
 
 	return (
 		<Page>
@@ -23,7 +23,7 @@ export function ClientsListRoute(): ReactElement {
 				title={t("clients.clients")}
 				onRenderActions={() => (
 					<Button variant="default" onClick={() => createClientDialog.show()}>
-						{t("clients.addClient")}
+						{t("buttons.addNew")}
 					</Button>
 				)}
 			/>

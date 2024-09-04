@@ -1,19 +1,21 @@
-import { useImageUpload } from "~/hooks/use-image-uploader";
+import { useImageUpload } from "~/hooks";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
-import { Progress } from "./progress";
 import { FileUpIcon } from "lucide-react";
-import { Avatar } from "./avatar";
+import { Spinner } from "./spinner";
+import { Button } from "./button";
 
 type AvatarInputProps = {
 	previewUrl?: string;
 	onUploadComplete: (downloadUrl: string, filePath: string) => void;
+	onClear: () => void;
 };
 
-export function AvatarInput({ previewUrl, onUploadComplete }: AvatarInputProps) {
+export function AvatarInput({ previewUrl, onUploadComplete, onClear }: AvatarInputProps) {
 	const { t } = useTranslation();
 
-	const { uploadImage, progress, status } = useImageUpload({
+	const { status, clear, uploadImage } = useImageUpload({
+		initialStatus: previewUrl ? "complete" : "idle",
 		onUploadComplete,
 		onError: (error) =>
 			toast.error(t("forms.errors.imageUploadFailed"), {
@@ -27,9 +29,18 @@ export function AvatarInput({ previewUrl, onUploadComplete }: AvatarInputProps) 
 		}
 	};
 
+	const handleClear = () => {
+		clear();
+		onClear();
+	};
+
 	return (
 		<>
-			{status === "uploading" && <Progress value={progress} />}
+			{status === "uploading" && (
+				<div className="flex flex-col items-center rounded-lg py-12 px-3 space-y-3 border-2 border-dashed border-gray-6 cursor-pointer group hover:bg-gray-3 transition-all duration-100">
+					<Spinner />
+				</div>
+			)}
 			{status === "idle" && (
 				<>
 					{" "}
@@ -44,16 +55,19 @@ export function AvatarInput({ previewUrl, onUploadComplete }: AvatarInputProps) 
 							/>
 						</div>
 						<div className="text-center space-y-1 flex flex-col items-center">
-							<span className="text-gray-10">{t("forms.fileUploader.description")}</span>
-							<span className="text-sm text-gray-10">{t("forms.fileUploader.fileInfo")}</span>
+							<span className="text-gray-10">{t("forms.avatarUpload.label")}</span>
+							<span className="text-sm text-gray-10">{t("forms.avatarUpload.fileInfo")}</span>
 						</div>
 					</label>
 					<input className="hidden" type="file" id="image" onChange={handleFileChange} />
 				</>
 			)}
 			{status === "complete" && (
-				<div className="flex flex-col items-center rounded-lg py-12 px-3 space-y-3 border-2 border-dashed border-gray-6 cursor-pointer group hover:bg-gray-3 transition-all duration-100">
-					<Avatar avatarUrl={previewUrl} displayName="Avatar" />
+				<div className="flex flex-col items-center rounded-lg py-12 px-3 space-y-3 bg-gray-3 cursor-pointer group">
+					<img src={previewUrl} className="size-16 rounded-full" />
+					<Button variant="secondary" size="sm" onClick={() => handleClear()}>
+						Remove
+					</Button>
 				</div>
 			)}
 		</>

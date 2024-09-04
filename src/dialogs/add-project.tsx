@@ -7,11 +7,11 @@ import { Dialog } from "~/components/dialog";
 import { useQueryClient } from "@tanstack/react-query";
 import { api } from "~/lib/api";
 
-const createProjectFormSchema = z.object({
+const addProjectFormSchema = z.object({
 	displayName: z.string().min(1),
 });
 
-export const CreateProjectDialog = NiceModal.create(() => {
+export const AddProjectDialog = NiceModal.create(() => {
 	const queryClient = useQueryClient();
 	const modal = useModal();
 
@@ -27,7 +27,7 @@ export const CreateProjectDialog = NiceModal.create(() => {
 	});
 
 	const isFormValid = useMemo(() => {
-		const result = createProjectFormSchema.safeParse(form.values);
+		const result = addProjectFormSchema.safeParse(form.values);
 		return result.success;
 	}, [form.values]);
 

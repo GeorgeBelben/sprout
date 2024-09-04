@@ -4,10 +4,11 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useRevalidator } from "react-router-dom";
 import { Button, Input, Dialog } from "~/components";
+import { AvatarInput } from "~/components/avatar-input";
 import { api } from "~/lib/api";
 import { ClientDto, clientSchema } from "~/types";
 
-export const CreateClientDialog = NiceModal.create(() => {
+export const AddClientDialog = NiceModal.create(() => {
 	const { t } = useTranslation();
 	const modal = useModal();
 	const revalidator = useRevalidator();
@@ -16,9 +17,11 @@ export const CreateClientDialog = NiceModal.create(() => {
 		initialValues: {
 			displayName: "",
 			totalProjects: 0,
+			avatarUrl: "",
+			avatarFilePath: "",
 		},
 		onSubmit: async (values) => {
-			await api.clients.add(values.displayName);
+			await api.clients.add(values);
 			await revalidator.revalidate();
 			modal.remove();
 		},
@@ -31,20 +34,31 @@ export const CreateClientDialog = NiceModal.create(() => {
 
 	return (
 		<Dialog
-			title={t("dialogs.addClientTitle")}
-			description={t("dialogs.addClientDescription")}
+			title={t("dialogs.addClient.title")}
+			description={t("dialogs.addClient.description")}
 			open={modal.visible}
 			onClose={() => modal.remove()}
 		>
 			<form onSubmit={form.handleSubmit} onBlur={form.handleBlur} className="space-y-4">
+				<AvatarInput
+					previewUrl={form.values.avatarUrl}
+					onClear={() => {
+						form.setFieldValue("avatarUrl", "");
+						form.setFieldValue("avatarFilePath", "");
+					}}
+					onUploadComplete={(documentUrl, filePath) => {
+						form.setFieldValue("avatarUrl", documentUrl);
+						form.setFieldValue("avatarFilePath", filePath);
+					}}
+				/>
 				<Input
-					label={t("forms.labels.displayName")}
-					placeholder={t("forms.placeholders.displayName")}
+					label={t("dialogs.addClient.displayNameLabel")}
+					placeholder={t("dialogs.addClient.displayNamePlaceholder")}
 					{...form.getFieldProps("displayName")}
 				/>
 				<div className="flex items-center justify-end">
 					<Button type="submit" disabled={!isFormValid} loading={form.isSubmitting}>
-						{t("forms.buttons.add")}
+						{t("buttons.add")}
 					</Button>
 				</div>
 			</form>

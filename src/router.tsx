@@ -42,7 +42,6 @@ export function Router(): ReactElement {
 					element: <ClientsSingleRoute />,
 					errorElement: <RouteErrorView />,
 					loader: async ({ params }: { params: Params<"clientId"> }) => {
-						console.log("params", params);
 						const client = await api.clients.get(brand<DocumentId>(params.clientId));
 						return { client };
 					},

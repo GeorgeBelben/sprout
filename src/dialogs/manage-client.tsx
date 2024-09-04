@@ -16,8 +16,8 @@ export const ManageClientDialog = NiceModal.create((client: Client) => {
 	const form = useFormik<Omit<ClientDto, "totalProjects">>({
 		initialValues: {
 			displayName: client.displayName,
-			avatarUrl: undefined,
-			avatarFilePath: undefined,
+			avatarUrl: client.avatarUrl,
+			avatarFilePath: client.avatarFilePath,
 		},
 		onSubmit: async (values) => {
 			await api.clients.update(client.id, values);
@@ -32,12 +32,7 @@ export const ManageClientDialog = NiceModal.create((client: Client) => {
 	}, [form.values]);
 
 	return (
-		<Dialog
-			title={t("dialogs.manageClientTitle")}
-			description={t("dialogs.manageClientDescription")}
-			open={modal.visible}
-			onClose={() => modal.remove()}
-		>
+		<Dialog title={t("dialogs.manageClient.title")} open={modal.visible} onClose={() => modal.remove()}>
 			<form onSubmit={form.handleSubmit} onBlur={form.handleBlur} className="space-y-4">
 				<AvatarInput
 					previewUrl={form.values.avatarUrl}
@@ -45,15 +40,19 @@ export const ManageClientDialog = NiceModal.create((client: Client) => {
 						form.setFieldValue("avatarUrl", documentUrl);
 						form.setFieldValue("avatarFilePath", filePath);
 					}}
+					onClear={() => {
+						form.setFieldValue("avatarUrl", "");
+						form.setFieldValue("avatarFilePath", "");
+					}}
 				/>
 				<Input
-					label={t("forms.labels.displayName")}
-					placeholder={t("forms.placeholders.displayName")}
+					label={t("dialogs.manageClient.displayNameLabel")}
+					placeholder={t("dialogs.manageClient.displayNamePlaceholder")}
 					{...form.getFieldProps("displayName")}
 				/>
 				<div className="flex items-center justify-end">
 					<Button type="submit" disabled={!isFormValid} loading={form.isSubmitting}>
-						{t("forms.buttons.update")}
+						{t("buttons.update")}
 					</Button>
 				</div>
 			</form>
