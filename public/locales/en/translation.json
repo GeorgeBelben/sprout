@@ -7,12 +7,18 @@
 		"auth/user-not-found": "There is no user record corresponding to this identifier. The user may have been deleted.",
 		"auth/wrong-password": "The password is invalid or the user does not have a password.",
 		"auth/missing-password": "The password is missing.",
-		"auth/invalid-credential": "The supplied auth credentials are invalid."
+		"auth/invalid-credential": "The supplied auth credentials are invalid.",
+		"storage/unauthorized": "User does not have permission to access the object."
 	},
 	"global": {
 		"userMenu": {
 			"settings": "Settings",
 			"logout": "Logout"
+		}
+	},
+	"forms": {
+		"errors": {
+			"imageUploadFailed": "Image upload failed"
 		}
 	},
 	"auth": {

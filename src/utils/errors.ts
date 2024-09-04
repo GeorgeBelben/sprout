@@ -4,6 +4,9 @@ export const ensureError = (error: unknown): Error => {
 	if (error instanceof Error) {
 		return error;
 	}
+	if (isErrorLike(error)) {
+		return error as Error;
+	}
 	return new Error(JSON.stringify(error));
 };
 

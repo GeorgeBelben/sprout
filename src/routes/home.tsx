@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
-import { Button } from "~/components";
-import { useActiveTimer } from "~/features/timer";
-import { TimerStatus } from "~/features/timer/types";
+import { useActiveTimer } from "~/hooks";
+import { TimerStatus } from "~/types";
 
 export function Home(): ReactElement {
 	const timer = useActiveTimer();
@@ -19,25 +18,6 @@ export function Home(): ReactElement {
 					</button>
 					<div className="flex w-full items-end justify-between">
 						<div className="flex items-center space-x-1">
-							{timer.status === TimerStatus.Active ? (
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									className="size-20 text-violet-9"
-								>
-									<path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
-								</svg>
-							) : (
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									className="size-20 text-violet-9"
-								>
-									<path d="M4.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-1ZM10.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-1Z" />
-								</svg>
-							)}
 							<p className="font-extrabold text-7xl tracking-wide">
 								{hours}
 								<span>:</span>
@@ -97,9 +77,6 @@ export function Home(): ReactElement {
 							</button>
 						</div>
 					</div>
-				</div>
-				<div className="flex flex-col flex-1 justify-end">
-					<p>Hello</p>
 				</div>
 			</div>
 		</div>

@@ -1,26 +1,44 @@
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { ReactElement } from "react";
-import md5 from "md5";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import { cva, VariantProps } from "class-variance-authority";
+import { getInitials } from "~/utils";
+
+const avatarVariants = cva(
+	[
+		"relative bg-violet-9 inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle",
+	],
+	{
+		variants: {
+			size: {
+				sm: "h-8 w-8 text-[10px]",
+				md: "h-10 w-10 text-xs",
+				lg: "h-12 w-12 text-sm",
+			},
+		},
+		defaultVariants: {
+			size: "md",
+		},
+	}
+);
 
 type AvatarProps = {
-	email: string;
 	displayName: string;
-};
+	avatarUrl?: string;
+} & VariantProps<typeof avatarVariants>;
 
-export function Avatar({ email, displayName }: AvatarProps): ReactElement {
+export function Avatar({ displayName, avatarUrl, ...rest }: AvatarProps): ReactElement {
 	return (
-		<AvatarPrimitive.Root className="cursor-pointer bg-violet-9 inline-flex h-[24px] w-[24px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
-			<AvatarPrimitive.Image
-				className="h-full w-full rounded-[inherit] object-cover"
-				src={getGravatarUrl(email)}
-				alt={displayName}
-			/>
-		</AvatarPrimitive.Root>
+		<div className="relative group">
+			<AvatarPrimitive.Root className={avatarVariants(rest)}>
+				<AvatarPrimitive.Image
+					className="h-full w-full rounded-[inherit] object-cover bg-gray-2"
+					src={avatarUrl}
+					alt={displayName}
+				/>
+				<AvatarPrimitive.Fallback className="h-full w-full rounded-[inherit] bg-violet-8 text-violet-12 font-bold flex items-center justify-center">
+					{getInitials(displayName)}
+				</AvatarPrimitive.Fallback>
+			</AvatarPrimitive.Root>
+		</div>
 	);
-}
-
-function getGravatarUrl(email: string): string {
-	if (email.length === 0) return "https://www.gravatar.com/avatar/?d=identicon";
-	const hash = md5(email.trim().toLowerCase());
-	return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
 }

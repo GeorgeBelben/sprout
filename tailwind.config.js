@@ -22,7 +22,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["Inter", "sans-serif"],
+				sans: ["Plus Jakarta Sans", "sans-serif"],
 			},
 			keyframes: {
 				slideDownAndFade: {
@@ -41,9 +41,13 @@ export default {
 					from: { opacity: "0", transform: "translateX(-2px) scale(0.9)" },
 					to: { opacity: "1", transform: "translateX(0) scale(1)" },
 				},
-				clockColon: {
-					"0%, 49%, 100%": { opacity: "0" },
-					"50%,99%": { opacity: "1" },
+				overlayShow: {
+					from: { opacity: "0" },
+					to: { opacity: "1" },
+				},
+				contentShow: {
+					from: { opacity: "0", transform: "translate(-50%, -48%) scale(0.96)" },
+					to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
 				},
 			},
 			animation: {
@@ -51,7 +55,8 @@ export default {
 				slideLeftAndFade: "slideLeftAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
 				slideUpAndFade: "slideUpAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
 				slideRightAndFade: "slideRightAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
-				clockColon: "clockColon 1s infinite",
+				overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+				contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
 			},
 		},
 	},

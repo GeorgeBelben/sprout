@@ -1,25 +1,25 @@
-import { Briefcase, Cog, LayoutDashboard, LogOut } from "lucide-react";
+import { Cog, LogOut, Timer, User } from "lucide-react";
 import { PropsWithChildren, ReactElement } from "react";
 import { NavLink } from "react-router-dom";
 import { Tooltip } from "./tooltip";
 import { cn } from "~/utils/cn";
 import { Logo } from "./logo";
-import { useUser } from "~/hooks/use-user";
+import { useUser } from "~/hooks";
 import { Dropdown } from "./dropdown";
 import { signOut } from "firebase/auth";
 import { auth } from "~/lib/firebase";
-import { Avatar } from "./avatar";
+import { UserAvatar } from "./user-avatar";
 
 const sidebarItems = [
 	{
-		title: "Dashboard",
-		icon: LayoutDashboard,
+		title: "Timer",
+		icon: Timer,
 		href: "/",
 	},
 	{
-		title: "Projects",
-		icon: Briefcase,
-		href: "/projects",
+		title: "Clients",
+		icon: User,
+		href: "/clients",
 	},
 ];
 
@@ -27,18 +27,10 @@ export function Sidebar(): ReactElement {
 	return (
 		<div className="w-12 flex flex-col bg-gray-1">
 			<div className="flex-1 flex flex-col">
-				<NavLink
-					to={"/"}
-					className={(props) =>
-						cn("size-12 flex items-center justify-center transition-all duration-100", {
-							"bg-gray-3 text-violet-11": props.isActive,
-							"text-gray-10 hover:text-gray-12 hover:bg-gray-2": !props.isActive,
-						})
-					}
-				>
+				<div className="size-12 flex items-center justify-center">
 					<Logo size="xs" />
 					<span className="sr-only">Sprout</span>
-				</NavLink>
+				</div>
 				{sidebarItems.map((item) => (
 					<SidebarItem key={item.href} href={item.href} title={item.title}>
 						<item.icon size={14} />
@@ -109,7 +101,7 @@ function UserMenu(): ReactElement {
 			<span>
 				<Tooltip side="left" content={user.email ?? ""}>
 					<span>
-						<Avatar email={user.email ?? ""} displayName={user.displayName ?? ""} />
+						<UserAvatar email={user.email ?? ""} displayName={user.displayName ?? ""} />
 					</span>
 				</Tooltip>
 			</span>

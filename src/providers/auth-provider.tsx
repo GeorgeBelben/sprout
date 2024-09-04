@@ -1,8 +1,8 @@
 import { onAuthStateChanged, User } from "firebase/auth";
 import { createContext, PropsWithChildren, ReactElement, useEffect, useState } from "react";
-import { Logo } from "~/components";
-import { AuthRouter } from "~/features/auth";
+import { Splash } from "~/components";
 import { auth } from "~/lib/firebase";
+import { AuthRouter } from "~/routes/auth";
 
 export const AuthContext = createContext<User | null>(null);
 
@@ -12,7 +12,9 @@ export function AuthProvider({ children }: PropsWithChildren): ReactElement {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			console.log("User", user);
 			setInitialised(true);
+			auth.updateCurrentUser(user);
 			setFirebaseUser(user);
 		});
 
@@ -20,11 +22,7 @@ export function AuthProvider({ children }: PropsWithChildren): ReactElement {
 	}, []);
 
 	if (!initialised) {
-		return (
-			<div className="bg-gray-1 text-gray-12 h-[100dvh] flex items-center justify-center">
-				<Logo color="foreground-muted" size="lg" />
-			</div>
-		);
+		return <Splash />;
 	}
 
 	if (!firebaseUser) {

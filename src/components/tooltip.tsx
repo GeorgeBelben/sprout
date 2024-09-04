@@ -17,7 +17,7 @@ export function Tooltip({ children, content, side = "top" }: TooltipProps): Reac
 				collisionPadding={8}
 				className={cn(
 					"data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade",
-					"bg-gray-12 text-gray-1 text-xs font-semibold select-none rounded-[4px] px-3 py-1.5 leading-none shadow will-change-[transform,opacity]"
+					"bg-gray-12 text-gray-1 text-xs font-bold select-none rounded-[4px] px-3 py-1.5 leading-none shadow will-change-[transform,opacity]"
 				)}
 			>
 				{content}

@@ -17,4 +17,13 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { auth, db, storage };
+const getCurrentUser = () => {
+	console.log(auth);
+	if (!auth.currentUser) {
+		throw new Error("No user found");
+	}
+
+	return auth.currentUser;
+};
+
+export { auth, db, storage, getCurrentUser };

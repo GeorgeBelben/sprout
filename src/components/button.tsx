@@ -1,13 +1,14 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "~/utils/cn";
+import { Spinner } from "./spinner";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+	"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
 	{
 		variants: {
 			variant: {
-				default: "bg-violet-9 text-gray-12 shadow hover:bg-violet-7",
+				default: "bg-violet-9 text-gray-12 shadow hover:bg-violet-10",
 				destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
 				secondary: "bg-gray-4 hover:bg-gray-6 text-gray-11 hover:text-gray-12 shadow-sm ",
 				ghost: "text-gray-11 hover:bg-gray-3 hover:text-gray-12",
@@ -29,8 +30,22 @@ const buttonVariants = cva(
 
 export interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-		VariantProps<typeof buttonVariants> {}
+		VariantProps<typeof buttonVariants> {
+	loading?: boolean;
+}
 
-export function Button({ className, variant, size, ...props }: ButtonProps): React.ReactElement {
-	return <button className={cn(buttonVariants({ variant, size, className }))} {...props} />;
+export function Button({
+	className,
+	variant,
+	size,
+	loading,
+	children,
+	disabled,
+	...props
+}: ButtonProps): React.ReactElement {
+	return (
+		<button disabled={disabled ?? loading} className={cn(buttonVariants({ variant, size, className }))} {...props}>
+			{loading ? <Spinner size="sm" color="white" /> : children}
+		</button>
+	);
 }

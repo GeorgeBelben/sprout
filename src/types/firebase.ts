@@ -1,4 +1,9 @@
+import { Brand } from "~/types";
+
+export type DocumentId = Brand<string, "DocumentId">;
+
 export type BaseDocument = {
-	createdAt: number;
-	updatedAt: number;
+	id: DocumentId;
 };
+
+export type WithDocumentId<T> = T & BaseDocument;
